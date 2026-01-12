@@ -1,4 +1,3 @@
-<!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
 import { useAppData } from '@/stores/mockup'
 import BackgroundImg from '@/assets/background-light.png'
@@ -20,8 +19,7 @@ const appData = useAppData()
                 class="text-primary font-weight-bold text-none mr-4"
                 color="white"
                 height="50px"
-                href="https://store.vuetifyjs.com/products/flairo-theme-pro"
-                target="_blank"
+                :to="{ name: 'login' }"
                 rounded
               >
                 <span class="ms-2" v-text="appData.customerType.paw_parent.value"></span>
@@ -31,8 +29,7 @@ const appData = useAppData()
                 class="text-primary font-weight-bold text-none mr-4 mb-1"
                 color="white"
                 height="50px"
-                href="https://store.vuetifyjs.com/products/flairo-theme-pro"
-                target="_blank"
+                :to="{ name: 'login' }"
                 rounded
               >
                 <span v-text="appData.customerType.veterinarian.value" />

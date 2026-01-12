@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
+import { no } from 'vuetify/locale'
 
 const getImgUrl = (imagePath: string) => new URL(`${imagePath}`, import.meta.url).href
 
@@ -13,6 +14,23 @@ export const useAppData = defineStore('appData', () => {
     paw_parent: { value: 'I am a Paw Parent' },
     veterinarian: { value: 'I am a Veterinarian' },
   })
+  const authDetails = ref({
+    title: { value: 'Join RafikiPets' },
+    description: { value: 'Create your account to get started' },
+    full_name: { label: 'Full Name', placeholder: 'Enter your full name' },
+    email: { label: 'Email', placeholder: 'Enter your email' },
+    password: { label: 'Password', placeholder: 'Enter your password' },
+    forgot_password: { value: 'Forgot login password?' },
+    have_account: { value: 'Already have an account?' },
+    no_account: { value: "Don't have an account?" },
+    sign_up: { value: 'Sign up' },
+    login: { value: 'Log in' },
+    greeting: { value: 'Hi' },
+  })
+  const profileDetails = ref({
+    title: { value: 'Complete Your Vet Profile' },
+  })
+
   const contact = ref({
     phone: { value: '+254 111 620-450' },
     email: { value: 'sample@example.com' },
@@ -386,6 +404,7 @@ export const useAppData = defineStore('appData', () => {
   return {
     title,
     description,
+    authDetails,
     subtitle,
     customerType,
     contact,
