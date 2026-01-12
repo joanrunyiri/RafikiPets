@@ -1,4 +1,6 @@
 import fastify from 'fastify'
+import 'dotenv/config'
+
 import fastifyCors from '@fastify/cors'
 
 import type { FastifyInstance } from 'fastify'
