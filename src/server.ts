@@ -2,9 +2,10 @@ import fastify from 'fastify'
 import 'dotenv/config'
 
 import fastifyCors from '@fastify/cors'
-
+import userRoutes from './routes/user'
 import type { FastifyInstance } from 'fastify'
 import { auth } from './utils/auth/auth'
+import databasePlugin from './plugins/database'
 
 const app: FastifyInstance = fastify({ logger: true })
 
@@ -15,6 +16,8 @@ app.register(fastifyCors, {
   credentials: true,
   maxAge: 86400,
 })
+app.register(userRoutes)
+app.register(databasePlugin)
 
 // Register better authentication endpoint
 app.route({

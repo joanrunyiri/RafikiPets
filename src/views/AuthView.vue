@@ -20,13 +20,14 @@ const isVet = ref(false)
 
 const handleSignUp = async () => {
   loading.value = true
+  console.log('isVet:', isVet.value)
 
   await authClient.signUp.email(
     {
       email: email.value,
       password: password.value,
       name: fullName.value,
-      callbackURL: '/home', // redirect after signup
+      callbackURL: isVet.value ? '/vet-setup' : '/',
     },
     {
       onRequest: (ctx) => {
@@ -35,7 +36,7 @@ const handleSignUp = async () => {
       },
       onSuccess: (ctx) => {
         // User is automatically signed in by default
-        router.push('/home')
+        router.push(isVet.value ? '/vet-setup' : '/')
       },
       onError: (ctx) => {
         loading.value = false
@@ -53,7 +54,7 @@ const handleLogin = async () => {
     {
       email: email.value,
       password: password.value,
-      callbackURL: '/home',
+      callbackURL: '/',
       rememberMe: true,
     },
     {
@@ -164,10 +165,28 @@ const handleLogin = async () => {
               {{ appData.authDetails.description.value }}
             </div>
           </div>
-          <v-chip class="pa-6" @click="isParent = true">
+          <v-chip
+            class="pa-6"
+            selected-class="primary"
+            @click="
+              () => {
+                isVet = false
+                isParent = true
+              }
+            "
+          >
             {{ appData.customerType.paw_parent.value }}
           </v-chip>
-          <v-chip class="pa-6 ma-6" @click="isVet = true">
+          <v-chip
+            class="pa-6 ma-6"
+            selected-class="primary"
+            @click="
+              () => {
+                isVet = true
+                isParent = false
+              }
+            "
+          >
             {{ appData.customerType.veterinarian.value }}
           </v-chip>
           <div class="text-subtitle-1 text-medium-emphasis mb-1">

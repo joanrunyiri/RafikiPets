@@ -29,6 +29,13 @@ export const useAppData = defineStore('appData', () => {
   })
   const profileDetails = ref({
     title: { value: 'Complete Your Vet Profile' },
+    subtitle: { value: 'Tell pet owners about your practice and expertise' },
+    license_no: { label: 'License Number', placeholder: 'Enter your veterinary license number' },
+    speciality: { label: 'Speciality', placeholder: 'Enter your area of speciality' },
+    location: { label: 'Location', placeholder: 'Enter your location' },
+    phone: { label: 'Phone', placeholder: 'Enter your phone number' },
+    yoe: { label: 'Years of Experience', placeholder: 'Enter your years of experience' },
+    bio: { label: 'Bio', placeholder: 'Enter a short bio' },
   })
 
   const contact = ref({
@@ -405,6 +412,7 @@ export const useAppData = defineStore('appData', () => {
     title,
     description,
     authDetails,
+    profileDetails,
     subtitle,
     customerType,
     contact,
