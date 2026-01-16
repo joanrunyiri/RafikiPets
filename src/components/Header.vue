@@ -58,7 +58,7 @@ const handleSignOut = async () => {
       />
     </v-btn>
     <div>
-      <button v-if="session.data" @click="handleSignOut">Sign out</button>
+      <v-btn v-if="session.data" @click="handleSignOut">Sign out</v-btn>
     </div>
   </v-system-bar>
 </template>

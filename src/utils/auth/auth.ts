@@ -1,5 +1,5 @@
 import { betterAuth } from 'better-auth'
-import { pool } from '../../../mysql'
+import { pool } from '../../mysql'
 
 export const auth = betterAuth({
   secret: process.env.BETTER_AUTH_SECRET,

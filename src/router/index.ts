@@ -14,6 +14,11 @@ const router = createRouter({
       path: '/login',
       component: () => import('@/views/AuthView.vue'),
     },
+    {
+      name: 'vet-setup',
+      path: '/vet-setup',
+      component: () => import('@/views/VetSetupView.vue'),
+    },
   ],
 })
 
