@@ -5,22 +5,21 @@ import imageCatDog from '@/assets/catndog.png'
 import { authClient } from '@/utils/auth/auth-client'
 import Header from '@/components/Header.vue'
 import { useRouter } from 'vue-router'
+import { computed } from 'vue'
 
 const appData = useAppData()
 const router = useRouter()
 const visible = ref(false)
 const loading = ref(false)
-
+const userType = ref<'vet' | 'paw_parent'>('paw_parent')
 const fullName = ref('')
 const email = ref('')
 const password = ref('')
 const isSignUp = ref(false)
-const isParent = ref(false)
-const isVet = ref(false)
+const isVet = computed(() => userType.value === 'vet')
 
 const handleSignUp = async () => {
   loading.value = true
-  console.log('isVet:', isVet.value)
 
   await authClient.signUp.email(
     {
@@ -165,30 +164,16 @@ const handleLogin = async () => {
               {{ appData.authDetails.description.value }}
             </div>
           </div>
-          <v-chip
-            class="pa-6"
-            selected-class="primary"
-            @click="
-              () => {
-                isVet = false
-                isParent = true
-              }
-            "
-          >
-            {{ appData.customerType.paw_parent.value }}
-          </v-chip>
-          <v-chip
-            class="pa-6 ma-6"
-            selected-class="primary"
-            @click="
-              () => {
-                isVet = true
-                isParent = false
-              }
-            "
-          >
-            {{ appData.customerType.veterinarian.value }}
-          </v-chip>
+          <v-chip-group v-model="userType" mandatory selected-class="bg-primary text-white">
+            <v-chip value="paw_parent" class="pa-6">
+              {{ appData.customerType.paw_parent.value }}
+            </v-chip>
+
+            <v-chip value="vet" class="pa-6">
+              {{ appData.customerType.veterinarian.value }}
+            </v-chip>
+          </v-chip-group>
+
           <div class="text-subtitle-1 text-medium-emphasis mb-1">
             {{ appData.authDetails.full_name.label }}
           </div>
